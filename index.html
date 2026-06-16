@@ -553,38 +553,63 @@
       color: var(--muted);
     }
 
-    /* Teaching */
-    .teaching-group { margin-bottom: 28px; }
+    /* Projects */
+    .project-list { display: flex; flex-direction: column; gap: 16px; }
 
-    .teaching-group h3 {
-      font-size: 17px;
+    .project-card {
+      padding: 22px 26px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card-bg);
+      transition: all var(--transition);
+    }
+
+    .project-card:hover {
+      border-color: var(--muted);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .project-name {
+      font-size: 18px;
       font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
       margin-bottom: 12px;
     }
 
-    .teaching-group ul {
-      list-style: none;
-      padding: 0;
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
     }
 
-    .teaching-group li {
-      font-size: 15px;
-      padding: 8px 0;
-      padding-left: 16px;
-      position: relative;
+    .project-tag {
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .project-links a {
+      font-size: 13px;
       color: var(--text);
+      opacity: 0.7;
+      transition: opacity var(--transition);
     }
 
-    .teaching-group li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 16px;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--muted);
-    }
+    .project-links a:hover { opacity: 1; }
 
     /* Scholar Badge */
     .scholar-badge img {
@@ -678,6 +703,7 @@
           <a href="#about">About</a>
           <a href="#news">News</a>
           <a href="#publications">Publications</a>
+          <a href="#projects">Projects</a>
           <a href="#education">Education</a>
           <a href="#honors">Honors</a>
         </nav>
@@ -702,7 +728,7 @@
     <a href="#honors">Honors</a>
     <a href="#services">Services</a>
     <a href="#fundings">Fundings</a>
-    <a href="#teaching">Teaching</a>
+    <a href="#projects">Projects</a>
   </div>
 
   <main>
@@ -788,13 +814,14 @@
       </div>
     </section>
 
-    <!-- Teaching -->
-    <section id="teaching">
+    <!-- Projects -->
+    <section id="projects">
       <div class="container">
-        <h2>Teaching</h2>
-        <div id="teaching-content" class="reveal"></div>
+        <h2>Projects</h2>
+        <div class="project-list reveal" id="project-list"></div>
       </div>
     </section>
+
   </main>
 
   <!-- Footer -->
@@ -1077,23 +1104,27 @@
       fundingList.innerHTML = '<div class="empty-state">No fundings yet.</div>';
     }
 
-    // Teaching
-    const teachingEl = document.getElementById('teaching-content');
-    const teach = config.teaching || {};
-    if ((teach.graduate && teach.graduate.length) || (teach.undergraduate && teach.undergraduate.length)) {
-      let html = '';
-      if (teach.graduate && teach.graduate.length) {
-        html += '<div class="teaching-group"><h3>Graduate Courses</h3><ul>' +
-          teach.graduate.map(c => `<li>${c}</li>`).join('') + '</ul></div>';
-      }
-      if (teach.undergraduate && teach.undergraduate.length) {
-        html += '<div class="teaching-group"><h3>Undergraduate Courses</h3><ul>' +
-          teach.undergraduate.map(c => `<li>${c}</li>`).join('') + '</ul></div>';
-      }
-      teachingEl.innerHTML = html;
+    // Projects
+    const projectList = document.getElementById('project-list');
+    if (config.projects && config.projects.length) {
+      config.projects.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        const tagsHtml = (p.tags || []).map(t => `<span class="project-tag">${t}</span>`).join('');
+        let linksHtml = '';
+        if (p.github) linksHtml += `<a href="${p.github}" target="_blank"><i class="fab fa-github"></i> GitHub</a>`;
+        if (p.link) linksHtml += `<a href="${p.link}" target="_blank"><i class="fas fa-external-link-alt"></i> Link</a>`;
+        card.innerHTML = `
+          <div class="project-name">${p.name}</div>
+          ${p.desc ? `<div class="project-desc">${p.desc}</div>` : ''}
+          ${tagsHtml ? `<div class="project-tags">${tagsHtml}</div>` : ''}
+          ${linksHtml ? `<div class="project-links">${linksHtml}</div>` : ''}`;
+        projectList.appendChild(card);
+      });
     } else {
-      teachingEl.innerHTML = '<div class="empty-state">No teaching info yet.</div>';
+      projectList.innerHTML = '<div class="empty-state">No projects yet.</div>';
     }
+
 
     // Footer
     document.getElementById('footer-copy').textContent = `© 2026 ${nameEn}.`;

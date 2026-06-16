@@ -1,16 +1,16 @@
 {
   "name": {
-    "en": "Your Name",
-    "cn": "你的名字"
+    "en": "Minyan Zhan",
+    "cn": "詹敏言"
   },
-  "title": "Graduate Student",
-  "school": "CTGU",
-  "research_interests": "Your Research Interests",
-  "about": "I am a graduate student at China Three Gorges University (CTGU). My research interests include [your research areas]. I am passionate about exploring new frontiers in [your field].\n\nFeel free to reach out if you are interested in collaboration or have any questions about my work.",
-  "email": "your.email@example.com",
-  "avatar": "images/avatar.jpg",
+  "title": "Undergraduate Student",
+  "school": "China Three Gorges University (CTGU)",
+  "research_interests": "Image Processing and Computer Vision",
+  "about": "I am an undergraduate student at China Three Gorges University (CTGU), majoring in Hubei Innox Academy (Three Gorges). My research interests include image processing and computer vision. I am passionate about exploring the frontiers of visual intelligence and its applications.\n\nFeel free to reach out if you are interested in collaboration or have any questions about my work.",
+  "email": "202410120213@ctgu.edu.cn",
+  "avatar": "",
   "social_links": {
-    "scholar": "https://scholar.google.com/citations?user=YOUR_ID",
+    "scholar": "",
     "github": "https://github.com/YAN-17-future",
     "orcid": "",
     "dblp": "",
@@ -22,45 +22,24 @@
       "content": "Welcome to my personal homepage!"
     },
     {
-      "date": "2026.05",
-      "content": "Started my research journey at CTGU."
+      "date": "2024.09",
+      "content": "Started my undergraduate journey at China Three Gorges University."
     }
   ],
-  "publications": [
-    {
-      "title": "Your First Publication Title",
-      "authors": ["Your Name", "Co-author 1", "Co-author 2"],
-      "venue": "Conference/Journal Name, Year",
-      "picture": "",
-      "paper": "",
-      "code": "",
-      "page": ""
-    }
-  ],
+  "publications": [],
   "education": [
     {
       "period": "2024 - Present",
-      "degree": "M.S. in Computer Science",
+      "degree": "B.S. in Information Science",
       "school": "China Three Gorges University",
-      "detail": ""
-    },
-    {
-      "period": "2020 - 2024",
-      "degree": "B.S. in Computer Science",
-      "school": "Your Undergraduate University",
-      "detail": ""
+      "detail": "Hubei Innox Academy (Three Gorges)"
     }
   ],
-  "honors": [
-    "Your Award or Honor, Year"
-  ],
+  "honors": [],
   "services": {
     "reviewer": [],
     "member": []
   },
   "fundings": [],
-  "teaching": {
-    "graduate": [],
-    "undergraduate": []
-  }
+  "projects": []
 }
