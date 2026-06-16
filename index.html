@@ -346,80 +346,130 @@
     .pub-list { display: flex; flex-direction: column; gap: 16px; }
 
     .pub-card {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 32px;
-      padding: 24px;
       border-radius: 12px;
       border: 1px solid var(--border);
       background: var(--card-bg);
       transition: all var(--transition);
-      cursor: default;
+      overflow: hidden;
     }
 
-    .pub-card.has-link { cursor: pointer; }
     .pub-card:hover {
       border-color: var(--muted);
       box-shadow: var(--shadow-hover);
     }
 
-    .pub-img {
+    .pub-header {
+      display: grid;
+      grid-template-columns: 220px 1fr auto;
+      gap: 24px;
+      padding: 20px 24px;
+      cursor: pointer;
+      align-items: center;
+    }
+
+    .pub-thumb {
+      width: 100%;
       aspect-ratio: 16/9;
       background: var(--pub-img-bg);
       border-radius: 8px;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
-    .pub-img img {
+    .pub-thumb img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s ease;
     }
 
-    .pub-card:hover .pub-img img { transform: scale(1.03); }
-
-    .pub-img-placeholder {
+    .pub-thumb-placeholder {
       width: 100%;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
     }
 
-    .pub-content { display: flex; flex-direction: column; }
+    .pub-brief { display: flex; flex-direction: column; min-width: 0; }
 
     .pub-title {
-      font-size: 19px;
+      font-size: 17px;
       font-weight: 600;
       line-height: 1.35;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
       letter-spacing: -0.01em;
     }
 
     .pub-authors {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--muted);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       line-height: 1.5;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .pub-authors strong { color: var(--text); font-weight: 600; }
 
     .pub-venue {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       color: var(--text);
-      margin-bottom: 14px;
+    }
+
+    .pub-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      flex-shrink: 0;
+      transition: background var(--transition);
+    }
+
+    .pub-toggle svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .pub-card:hover .pub-toggle { background: var(--border); }
+
+    .pub-card.expanded .pub-toggle svg { transform: rotate(180deg); }
+
+    .pub-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0 24px;
+    }
+
+    .pub-card.expanded .pub-detail {
+      max-height: 600px;
+      padding: 0 24px 24px;
+    }
+
+    .pub-detail-inner {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    .pub-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 16px;
     }
 
     .pub-links {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: auto;
     }
 
     .pub-links a {
@@ -557,11 +607,11 @@
     .project-list { display: flex; flex-direction: column; gap: 16px; }
 
     .project-card {
-      padding: 22px 26px;
       border: 1px solid var(--border);
       border-radius: 12px;
       background: var(--card-bg);
       transition: all var(--transition);
+      overflow: hidden;
     }
 
     .project-card:hover {
@@ -569,47 +619,113 @@
       box-shadow: var(--shadow-hover);
     }
 
-    .project-name {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 8px;
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      cursor: pointer;
     }
 
-    .project-desc {
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--text);
-      margin-bottom: 12px;
+    .project-header-left { flex: 1; min-width: 0; }
+
+    .project-name {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .project-brief {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .project-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 10px;
+      gap: 6px;
+      flex-shrink: 0;
     }
 
     .project-tag {
-      font-size: 12px;
+      font-size: 11px;
       padding: 3px 10px;
       border-radius: 20px;
       background: var(--badge-bg);
       color: var(--badge-text);
+      white-space: nowrap;
+    }
+
+    .project-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      flex-shrink: 0;
+      transition: background var(--transition);
+    }
+
+    .project-toggle svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-toggle { background: var(--border); }
+
+    .project-card.expanded .project-toggle svg { transform: rotate(180deg); }
+
+    .project-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0 24px;
+    }
+
+    .project-card.expanded .project-detail {
+      max-height: 500px;
+      padding: 0 24px 24px;
+    }
+
+    .project-detail-inner {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    .project-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 16px;
     }
 
     .project-links {
       display: flex;
-      gap: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .project-links a {
       font-size: 13px;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
       color: var(--text);
-      opacity: 0.7;
-      transition: opacity var(--transition);
+      transition: all var(--transition);
     }
 
-    .project-links a:hover { opacity: 1; }
+    .project-links a:hover {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border-color: var(--badge-bg);
+    }
 
     /* Scholar Badge */
     .scholar-badge img {
@@ -658,9 +774,9 @@
 
       .about-grid { grid-template-columns: 1fr; }
 
-      .pub-card { grid-template-columns: 1fr; gap: 20px; }
+      .pub-header { grid-template-columns: 160px 1fr auto; gap: 16px; }
 
-      .pub-img { max-width: 400px; }
+      .pub-thumb { max-width: 200px; }
 
       h1 { font-size: 40px; }
     }
@@ -680,7 +796,16 @@
 
       .footer-content { flex-direction: column; gap: 12px; text-align: center; }
 
-      .pub-card { padding: 18px; }
+      .pub-header {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .pub-thumb { max-width: 100%; }
+
+      .project-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+      .project-tags { align-self: flex-start; }
     }
 
     /* Empty state */
@@ -724,11 +849,11 @@
     <a href="#about">About</a>
     <a href="#news">News</a>
     <a href="#publications">Publications</a>
+    <a href="#projects">Projects</a>
     <a href="#education">Education</a>
     <a href="#honors">Honors</a>
     <a href="#services">Services</a>
     <a href="#fundings">Fundings</a>
-    <a href="#projects">Projects</a>
   </div>
 
   <main>
@@ -782,6 +907,14 @@
       </div>
     </section>
 
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="project-list reveal" id="project-list"></div>
+      </div>
+    </section>
+
     <!-- Education -->
     <section id="education">
       <div class="container">
@@ -811,14 +944,6 @@
       <div class="container">
         <h2>Fundings</h2>
         <div class="funding-list reveal" id="funding-list"></div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects">
-      <div class="container">
-        <h2>Projects</h2>
-        <div class="project-list reveal" id="project-list"></div>
       </div>
     </section>
 
@@ -998,16 +1123,16 @@
     }
 
     // Publications
+    const chevronSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>';
     const pubList = document.getElementById('pub-list');
     if (config.publications && config.publications.length) {
       config.publications.forEach(pub => {
         const card = document.createElement('div');
         card.className = 'pub-card';
-        if (pub.page || pub.paper) card.classList.add('has-link');
 
-        const imgHtml = pub.picture
-          ? `<img src="${pub.picture}" alt="${pub.title}" onerror="this.parentElement.innerHTML='<div class=pub-img-placeholder>Preview</div>'">`
-          : '<div class="pub-img-placeholder">Preview</div>';
+        const thumbHtml = pub.picture
+          ? `<img src="${pub.picture}" alt="${pub.title}" onerror="this.parentElement.innerHTML='<div class=pub-thumb-placeholder>Preview</div>'">`
+          : '<div class="pub-thumb-placeholder">Preview</div>';
 
         const authors = (pub.authors || []).map(a =>
           a.toLowerCase().includes(nameEn.toLowerCase()) ? `<strong>${a}</strong>` : a
@@ -1019,22 +1144,28 @@
         if (pub.code) linksHtml += `<a href="${pub.code}" target="_blank">Code</a>`;
         if (pub.video) linksHtml += `<a href="${pub.video}" target="_blank">Video</a>`;
 
+        const descHtml = pub.desc ? `<div class="pub-desc">${pub.desc}</div>` : '';
+
         card.innerHTML = `
-          <div class="pub-img">${imgHtml}</div>
-          <div class="pub-content">
-            <div class="pub-title">${pub.title}</div>
-            <div class="pub-authors">${authors}</div>
-            <div class="pub-venue">${pub.venue || ''}</div>
-            <div class="pub-links">${linksHtml}</div>
+          <div class="pub-header">
+            <div class="pub-thumb">${thumbHtml}</div>
+            <div class="pub-brief">
+              <div class="pub-title">${pub.title}</div>
+              <div class="pub-authors">${authors}</div>
+              <div class="pub-venue">${pub.venue || ''}</div>
+            </div>
+            <div class="pub-toggle">${chevronSvg}</div>
+          </div>
+          <div class="pub-detail">
+            <div class="pub-detail-inner">
+              ${descHtml}
+              <div class="pub-links">${linksHtml}</div>
+            </div>
           </div>`;
 
-        if (pub.page || pub.paper) {
-          card.addEventListener('click', e => {
-            if (e.target.tagName !== 'A' && !e.target.closest('a')) {
-              window.open(pub.page || pub.paper, '_blank');
-            }
-          });
-        }
+        card.querySelector('.pub-header').addEventListener('click', () => {
+          card.classList.toggle('expanded');
+        });
 
         pubList.appendChild(card);
       });
@@ -1114,11 +1245,27 @@
         let linksHtml = '';
         if (p.github) linksHtml += `<a href="${p.github}" target="_blank"><i class="fab fa-github"></i> GitHub</a>`;
         if (p.link) linksHtml += `<a href="${p.link}" target="_blank"><i class="fas fa-external-link-alt"></i> Link</a>`;
+
         card.innerHTML = `
-          <div class="project-name">${p.name}</div>
-          ${p.desc ? `<div class="project-desc">${p.desc}</div>` : ''}
-          ${tagsHtml ? `<div class="project-tags">${tagsHtml}</div>` : ''}
-          ${linksHtml ? `<div class="project-links">${linksHtml}</div>` : ''}`;
+          <div class="project-header">
+            <div class="project-header-left">
+              <div class="project-name">${p.name}</div>
+              ${p.brief ? `<div class="project-brief">${p.brief}</div>` : ''}
+            </div>
+            ${tagsHtml ? `<div class="project-tags">${tagsHtml}</div>` : ''}
+            <div class="project-toggle">${chevronSvg}</div>
+          </div>
+          <div class="project-detail">
+            <div class="project-detail-inner">
+              ${p.desc ? `<div class="project-desc">${p.desc}</div>` : ''}
+              ${linksHtml ? `<div class="project-links">${linksHtml}</div>` : ''}
+            </div>
+          </div>`;
+
+        card.querySelector('.project-header').addEventListener('click', () => {
+          card.classList.toggle('expanded');
+        });
+
         projectList.appendChild(card);
       });
     } else {
