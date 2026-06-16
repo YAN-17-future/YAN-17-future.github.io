@@ -1,0 +1,66 @@
+{
+  "name": {
+    "en": "Your Name",
+    "cn": "你的名字"
+  },
+  "title": "Graduate Student",
+  "school": "CTGU",
+  "research_interests": "Your Research Interests",
+  "about": "I am a graduate student at China Three Gorges University (CTGU). My research interests include [your research areas]. I am passionate about exploring new frontiers in [your field].\n\nFeel free to reach out if you are interested in collaboration or have any questions about my work.",
+  "email": "your.email@example.com",
+  "avatar": "images/avatar.jpg",
+  "social_links": {
+    "scholar": "https://scholar.google.com/citations?user=YOUR_ID",
+    "github": "https://github.com/YAN-17-future",
+    "orcid": "",
+    "dblp": "",
+    "twitter": ""
+  },
+  "news": [
+    {
+      "date": "2026.06",
+      "content": "Welcome to my personal homepage!"
+    },
+    {
+      "date": "2026.05",
+      "content": "Started my research journey at CTGU."
+    }
+  ],
+  "publications": [
+    {
+      "title": "Your First Publication Title",
+      "authors": ["Your Name", "Co-author 1", "Co-author 2"],
+      "venue": "Conference/Journal Name, Year",
+      "picture": "",
+      "paper": "",
+      "code": "",
+      "page": ""
+    }
+  ],
+  "education": [
+    {
+      "period": "2024 - Present",
+      "degree": "M.S. in Computer Science",
+      "school": "China Three Gorges University",
+      "detail": ""
+    },
+    {
+      "period": "2020 - 2024",
+      "degree": "B.S. in Computer Science",
+      "school": "Your Undergraduate University",
+      "detail": ""
+    }
+  ],
+  "honors": [
+    "Your Award or Honor, Year"
+  ],
+  "services": {
+    "reviewer": [],
+    "member": []
+  },
+  "fundings": [],
+  "teaching": {
+    "graduate": [],
+    "undergraduate": []
+  }
+}

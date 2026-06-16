@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Homepage</title>
+  <meta name="description" content="Personal academic homepage - Research, Publications, and more.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Academic Homepage">
+  <meta property="og:description" content="Personal academic homepage.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-secondary: #fafafa;
+      --text: #000000;
+      --muted: #6e6e6e;
+      --border: #e5e5e5;
+      --hover: #000000;
+      --link-hover: #555;
+      --avatar-bg: #f0f0f0;
+      --card-bg: #ffffff;
+      --card-hover: #f8f8f8;
+      --pub-img-bg: #f7f7f7;
+      --badge-bg: #000000;
+      --badge-text: #ffffff;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-hover: 0 4px 12px rgba(0,0,0,0.1);
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition: 0.2s ease;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0a0a0a;
+      --bg-secondary: #111111;
+      --text: #e5e5e5;
+      --muted: #888888;
+      --border: #222222;
+      --hover: #ffffff;
+      --link-hover: #cccccc;
+      --avatar-bg: #1a1a1a;
+      --card-bg: #141414;
+      --card-hover: #1a1a1a;
+      --pub-img-bg: #111111;
+      --badge-bg: #ffffff;
+      --badge-text: #000000;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-hover: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      padding: 20px 0;
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--transition), background var(--transition);
+    }
+
+    header.scrolled { border-bottom-color: var(--border); }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links { display: flex; gap: 28px; }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      opacity: 0.7;
+      transition: opacity var(--transition);
+    }
+
+    .nav-links a:hover { opacity: 1; }
+
+    #theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      opacity: 0.7;
+      transition: opacity var(--transition);
+    }
+
+    #theme-toggle:hover { opacity: 1; }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+    }
+
+    /* Mobile Menu */
+    .mobile-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100vh;
+      background: var(--bg);
+      z-index: 99;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-overlay.active { display: flex; opacity: 1; }
+
+    .mobile-overlay a {
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* Hero */
+    .hero { padding: 48px 0 80px; }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .hero .cn-name {
+      color: var(--muted);
+      font-size: 0.55em;
+      display: block;
+      margin-top: 6px;
+      font-weight: 400;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 20px 0 28px;
+      font-weight: 400;
+    }
+
+    .subtitle strong { color: var(--text); font-weight: 500; }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .social-links a {
+      font-size: 14px;
+      color: var(--text);
+      opacity: 0.7;
+      transition: opacity var(--transition);
+    }
+
+    .social-links a:hover { opacity: 1; }
+
+    .email-text {
+      font-family: 'Courier New', monospace;
+      font-size: 15px;
+      color: var(--muted);
+      margin-top: 16px;
+    }
+
+    .avatar-container {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--avatar-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .avatar-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: var(--muted);
+    }
+
+    /* Sections */
+    section { padding: 64px 0; }
+
+    section + section { border-top: 1px solid var(--border); }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 40px;
+      line-height: 1.2;
+    }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .about-image {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .about-caption {
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* News */
+    .news-list { display: flex; flex-direction: column; gap: 16px; }
+
+    .news-item {
+      display: flex;
+      gap: 20px;
+      padding: 16px 20px;
+      border-radius: 10px;
+      transition: background var(--transition);
+      align-items: baseline;
+    }
+
+    .news-item:hover { background: var(--card-hover); }
+
+    .news-date {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 80px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .news-content {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    /* Publications */
+    .pub-list { display: flex; flex-direction: column; gap: 16px; }
+
+    .pub-card {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      transition: all var(--transition);
+      cursor: default;
+    }
+
+    .pub-card.has-link { cursor: pointer; }
+    .pub-card:hover {
+      border-color: var(--muted);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .pub-img {
+      aspect-ratio: 16/9;
+      background: var(--pub-img-bg);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .pub-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .pub-card:hover .pub-img img { transform: scale(1.03); }
+
+    .pub-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .pub-content { display: flex; flex-direction: column; }
+
+    .pub-title {
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .pub-authors {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    .pub-authors strong { color: var(--text); font-weight: 600; }
+
+    .pub-venue {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .pub-links a {
+      font-size: 13px;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      transition: all var(--transition);
+    }
+
+    .pub-links a:hover {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border-color: var(--badge-bg);
+    }
+
+    /* Education */
+    .edu-list { display: flex; flex-direction: column; gap: 24px; }
+
+    .edu-item {
+      display: flex;
+      gap: 24px;
+      align-items: baseline;
+    }
+
+    .edu-period {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 120px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .edu-detail h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .edu-detail p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* Honors */
+    .honor-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .honor-item {
+      font-size: 16px;
+      padding: 14px 20px;
+      border-radius: 10px;
+      transition: background var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .honor-item:hover { background: var(--card-hover); }
+
+    .honor-item::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text);
+      flex-shrink: 0;
+    }
+
+    /* Services */
+    .service-group { margin-bottom: 28px; }
+
+    .service-group h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .service-group p, .service-group li {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .service-group ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .service-group li {
+      padding: 6px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .service-group li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+
+    /* Fundings */
+    .funding-list { display: flex; flex-direction: column; gap: 16px; }
+
+    .funding-item {
+      padding: 18px 22px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      transition: all var(--transition);
+    }
+
+    .funding-item:hover {
+      border-color: var(--muted);
+      box-shadow: var(--shadow);
+    }
+
+    .funding-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .funding-meta {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* Teaching */
+    .teaching-group { margin-bottom: 28px; }
+
+    .teaching-group h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .teaching-group ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .teaching-group li {
+      font-size: 15px;
+      padding: 8px 0;
+      padding-left: 16px;
+      position: relative;
+      color: var(--text);
+    }
+
+    .teaching-group li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 16px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+
+    /* Scholar Badge */
+    .scholar-badge img {
+      height: 20px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      opacity: 0.6;
+      transition: opacity var(--transition);
+    }
+
+    .footer-links a:hover { opacity: 1; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-content > div:last-child { order: -1; }
+
+      .avatar-container { width: 260px; margin: 0 auto; }
+
+      .about-grid { grid-template-columns: 1fr; }
+
+      .pub-card { grid-template-columns: 1fr; gap: 20px; }
+
+      .pub-img { max-width: 400px; }
+
+      h1 { font-size: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: flex; }
+
+      .hero { padding: 32px 0 60px; }
+      h1 { font-size: 36px; }
+
+      h2 { font-size: 24px; margin-bottom: 32px; }
+
+      .news-item { flex-direction: column; gap: 4px; }
+
+      .edu-item { flex-direction: column; gap: 4px; }
+
+      .footer-content { flex-direction: column; gap: 12px; text-align: center; }
+
+      .pub-card { padding: 18px; }
+    }
+
+    /* Empty state */
+    .empty-state {
+      font-size: 15px;
+      color: var(--muted);
+      font-style: italic;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- Header -->
+  <header id="site-header">
+    <div class="nav-inner">
+      <a class="brand" href="#top">Homepage</a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="#about">About</a>
+          <a href="#news">News</a>
+          <a href="#publications">Publications</a>
+          <a href="#education">Education</a>
+          <a href="#honors">Honors</a>
+        </nav>
+        <button id="theme-toggle" aria-label="Toggle dark mode">
+          <svg id="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle menu">
+          <svg id="bars-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg id="close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-overlay" class="mobile-overlay">
+    <a href="#about">About</a>
+    <a href="#news">News</a>
+    <a href="#publications">Publications</a>
+    <a href="#education">Education</a>
+    <a href="#honors">Honors</a>
+    <a href="#services">Services</a>
+    <a href="#fundings">Fundings</a>
+    <a href="#teaching">Teaching</a>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div>
+            <h1 id="hero-name">Your Name<span class="cn-name" id="hero-cn-name"></span></h1>
+            <div class="subtitle">
+              <span id="hero-title">Graduate Student</span> at <strong id="hero-school">CTGU</strong>.<br>
+              Focusing on <strong id="hero-interests">Your Research Interests</strong>.
+            </div>
+            <div class="social-links" id="hero-social"></div>
+            <div class="email-text" id="hero-email"></div>
+          </div>
+          <div>
+            <div class="avatar-container" id="avatar-box"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <h2>About</h2>
+        <div class="about-grid">
+          <div class="about-text reveal" id="about-text"></div>
+          <div class="about-image reveal" id="about-image"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News -->
+    <section id="news">
+      <div class="container">
+        <h2>News</h2>
+        <div class="news-list reveal" id="news-list"></div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:40px;flex-wrap:wrap;gap:12px;">
+          <h2 style="margin-bottom:0;">Publications</h2>
+          <a id="scholar-link" href="#" target="_blank" style="font-size:14px;text-decoration:underline;opacity:0.7;">View all on Google Scholar</a>
+        </div>
+        <div class="pub-list reveal" id="pub-list"></div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="container">
+        <h2>Education</h2>
+        <div class="edu-list reveal" id="edu-list"></div>
+      </div>
+    </section>
+
+    <!-- Honors -->
+    <section id="honors">
+      <div class="container">
+        <h2>Honors & Awards</h2>
+        <div class="honor-list reveal" id="honor-list"></div>
+      </div>
+    </section>
+
+    <!-- Academic Services -->
+    <section id="services">
+      <div class="container">
+        <h2>Academic Services</h2>
+        <div id="services-content" class="reveal"></div>
+      </div>
+    </section>
+
+    <!-- Fundings -->
+    <section id="fundings">
+      <div class="container">
+        <h2>Fundings</h2>
+        <div class="funding-list reveal" id="funding-list"></div>
+      </div>
+    </section>
+
+    <!-- Teaching -->
+    <section id="teaching">
+      <div class="container">
+        <h2>Teaching</h2>
+        <div id="teaching-content" class="reveal"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <span id="footer-copy">&copy; 2026 Your Name.</span>
+        <div class="footer-links" id="footer-links"></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (async function() {
+    // Load config
+    let config = {};
+    try {
+      const res = await fetch('config.json', { cache: 'no-cache' });
+      if (res.ok) config = await res.json();
+    } catch (e) { console.error('Failed to load config:', e); }
+
+    const name = config.name || {};
+    const nameEn = name.en || 'Your Name';
+    const nameCn = name.cn || '';
+
+    // === Theme Toggle ===
+    const toggle = document.getElementById('theme-toggle');
+    const moon = document.getElementById('moon-icon');
+    const sun = document.getElementById('sun-icon');
+    const html = document.documentElement;
+
+    function setTheme(theme, persist) {
+      if (theme === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+        moon.style.display = 'none';
+        sun.style.display = 'block';
+      } else {
+        html.removeAttribute('data-theme');
+        moon.style.display = 'block';
+        sun.style.display = 'none';
+      }
+      if (persist) localStorage.setItem('theme', theme);
+    }
+
+    function getTheme() {
+      return localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    }
+
+    setTheme(getTheme(), false);
+    toggle.addEventListener('click', () => {
+      setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
+    });
+
+    // === Sticky Header ===
+    window.addEventListener('scroll', () => {
+      document.getElementById('site-header').classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // === Mobile Menu ===
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const overlay = document.getElementById('mobile-overlay');
+    const barsIcon = document.getElementById('bars-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    function closeMenu() {
+      overlay.style.opacity = '0';
+      document.body.style.overflow = '';
+      barsIcon.style.display = 'block';
+      closeIcon.style.display = 'none';
+      setTimeout(() => { overlay.classList.remove('active'); overlay.style.display = 'none'; }, 300);
+    }
+
+    menuBtn.addEventListener('click', () => {
+      if (!overlay.classList.contains('active')) {
+        overlay.style.display = 'flex';
+        void overlay.offsetWidth;
+        overlay.classList.add('active');
+        overlay.style.opacity = '1';
+        document.body.style.overflow = 'hidden';
+        barsIcon.style.display = 'none';
+        closeIcon.style.display = 'block';
+      } else { closeMenu(); }
+    });
+
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+    // === Smooth Scroll ===
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        if (id === 'top') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+        const el = document.getElementById(id);
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // === Scroll Reveal ===
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // === Populate Content ===
+
+    // Hero
+    document.getElementById('hero-name').innerHTML = nameEn + (nameCn ? `<span class="cn-name">${nameCn}</span>` : '');
+    document.getElementById('hero-title').textContent = config.title || 'Graduate Student';
+    document.getElementById('hero-school').textContent = config.school || 'CTGU';
+    document.getElementById('hero-interests').textContent = config.research_interests || 'Your Research Interests';
+    document.title = `${nameEn} - Homepage`;
+
+    // Avatar
+    const avatarBox = document.getElementById('avatar-box');
+    if (config.avatar) {
+      const img = document.createElement('img');
+      img.src = config.avatar;
+      img.alt = nameEn;
+      img.onerror = () => { avatarBox.innerHTML = '<div class="avatar-placeholder"><i class="fas fa-user"></i></div>'; };
+      avatarBox.appendChild(img);
+    } else {
+      avatarBox.innerHTML = '<div class="avatar-placeholder"><i class="fas fa-user"></i></div>';
+    }
+
+    // Social Links
+    const socialEl = document.getElementById('hero-social');
+    const sl = config.social_links || {};
+    const socialIcons = {
+      scholar: { icon: 'ai ai-google-scholar', label: 'Google Scholar' },
+      github: { icon: 'fab fa-github', label: 'GitHub' },
+      orcid: { icon: 'ai ai-orcid', label: 'ORCID' },
+      dblp: { icon: 'ai ai-dblp', label: 'DBLP' },
+      twitter: { icon: 'fab fa-twitter', label: 'Twitter' }
+    };
+    Object.entries(socialIcons).forEach(([key, val]) => {
+      if (sl[key]) {
+        const a = document.createElement('a');
+        a.href = sl[key];
+        a.target = '_blank';
+        a.innerHTML = `<i class="${val.icon}"></i> ${val.label}`;
+        socialEl.appendChild(a);
+      }
+    });
+
+    // Email
+    if (config.email) {
+      document.getElementById('hero-email').textContent = config.email.replace('@', ' [at] ');
+    }
+
+    // Scholar link
+    if (sl.scholar) document.getElementById('scholar-link').href = sl.scholar;
+
+    // About
+    if (config.about) {
+      document.getElementById('about-text').innerHTML = config.about.split('\n\n').map(p => `<p>${p}</p>`).join('');
+    }
+
+    // News
+    const newsList = document.getElementById('news-list');
+    if (config.news && config.news.length) {
+      config.news.forEach(n => {
+        const item = document.createElement('div');
+        item.className = 'news-item';
+        item.innerHTML = `<span class="news-date">${n.date}</span><span class="news-content">${n.content}</span>`;
+        newsList.appendChild(item);
+      });
+    } else {
+      newsList.innerHTML = '<div class="empty-state">No news yet.</div>';
+    }
+
+    // Publications
+    const pubList = document.getElementById('pub-list');
+    if (config.publications && config.publications.length) {
+      config.publications.forEach(pub => {
+        const card = document.createElement('div');
+        card.className = 'pub-card';
+        if (pub.page || pub.paper) card.classList.add('has-link');
+
+        const imgHtml = pub.picture
+          ? `<img src="${pub.picture}" alt="${pub.title}" onerror="this.parentElement.innerHTML='<div class=pub-img-placeholder>Preview</div>'">`
+          : '<div class="pub-img-placeholder">Preview</div>';
+
+        const authors = (pub.authors || []).map(a =>
+          a.toLowerCase().includes(nameEn.toLowerCase()) ? `<strong>${a}</strong>` : a
+        ).join(', ');
+
+        let linksHtml = '';
+        if (pub.page) linksHtml += `<a href="${pub.page}" target="_blank">Project</a>`;
+        if (pub.paper) linksHtml += `<a href="${pub.paper}" target="_blank">Paper</a>`;
+        if (pub.code) linksHtml += `<a href="${pub.code}" target="_blank">Code</a>`;
+        if (pub.video) linksHtml += `<a href="${pub.video}" target="_blank">Video</a>`;
+
+        card.innerHTML = `
+          <div class="pub-img">${imgHtml}</div>
+          <div class="pub-content">
+            <div class="pub-title">${pub.title}</div>
+            <div class="pub-authors">${authors}</div>
+            <div class="pub-venue">${pub.venue || ''}</div>
+            <div class="pub-links">${linksHtml}</div>
+          </div>`;
+
+        if (pub.page || pub.paper) {
+          card.addEventListener('click', e => {
+            if (e.target.tagName !== 'A' && !e.target.closest('a')) {
+              window.open(pub.page || pub.paper, '_blank');
+            }
+          });
+        }
+
+        pubList.appendChild(card);
+      });
+    } else {
+      pubList.innerHTML = '<div class="empty-state">No publications yet.</div>';
+    }
+
+    // Education
+    const eduList = document.getElementById('edu-list');
+    if (config.education && config.education.length) {
+      config.education.forEach(e => {
+        const item = document.createElement('div');
+        item.className = 'edu-item';
+        item.innerHTML = `
+          <span class="edu-period">${e.period}</span>
+          <div class="edu-detail">
+            <h3>${e.degree}</h3>
+            <p>${e.school}${e.detail ? ' - ' + e.detail : ''}</p>
+          </div>`;
+        eduList.appendChild(item);
+      });
+    } else {
+      eduList.innerHTML = '<div class="empty-state">No education info yet.</div>';
+    }
+
+    // Honors
+    const honorList = document.getElementById('honor-list');
+    if (config.honors && config.honors.length) {
+      config.honors.forEach(h => {
+        const item = document.createElement('div');
+        item.className = 'honor-item';
+        item.textContent = h;
+        honorList.appendChild(item);
+      });
+    } else {
+      honorList.innerHTML = '<div class="empty-state">No honors yet.</div>';
+    }
+
+    // Services
+    const servicesEl = document.getElementById('services-content');
+    const svc = config.services || {};
+    if ((svc.reviewer && svc.reviewer.length) || (svc.member && svc.member.length)) {
+      let html = '';
+      if (svc.reviewer && svc.reviewer.length) {
+        html += '<div class="service-group"><h3>Reviewer</h3><ul>' +
+          svc.reviewer.map(r => `<li>${r}</li>`).join('') + '</ul></div>';
+      }
+      if (svc.member && svc.member.length) {
+        html += '<div class="service-group"><h3>Membership</h3><ul>' +
+          svc.member.map(m => `<li>${m}</li>`).join('') + '</ul></div>';
+      }
+      servicesEl.innerHTML = html;
+    } else {
+      servicesEl.innerHTML = '<div class="empty-state">No services listed yet.</div>';
+    }
+
+    // Fundings
+    const fundingList = document.getElementById('funding-list');
+    if (config.fundings && config.fundings.length) {
+      config.fundings.forEach(f => {
+        const item = document.createElement('div');
+        item.className = 'funding-item';
+        item.innerHTML = `<div class="funding-title">${f.title}</div><div class="funding-meta">${f.source || ''}${f.period ? ' | ' + f.period : ''}${f.grant ? ' | ' + f.grant : ''}</div>`;
+        fundingList.appendChild(item);
+      });
+    } else {
+      fundingList.innerHTML = '<div class="empty-state">No fundings yet.</div>';
+    }
+
+    // Teaching
+    const teachingEl = document.getElementById('teaching-content');
+    const teach = config.teaching || {};
+    if ((teach.graduate && teach.graduate.length) || (teach.undergraduate && teach.undergraduate.length)) {
+      let html = '';
+      if (teach.graduate && teach.graduate.length) {
+        html += '<div class="teaching-group"><h3>Graduate Courses</h3><ul>' +
+          teach.graduate.map(c => `<li>${c}</li>`).join('') + '</ul></div>';
+      }
+      if (teach.undergraduate && teach.undergraduate.length) {
+        html += '<div class="teaching-group"><h3>Undergraduate Courses</h3><ul>' +
+          teach.undergraduate.map(c => `<li>${c}</li>`).join('') + '</ul></div>';
+      }
+      teachingEl.innerHTML = html;
+    } else {
+      teachingEl.innerHTML = '<div class="empty-state">No teaching info yet.</div>';
+    }
+
+    // Footer
+    document.getElementById('footer-copy').textContent = `© 2026 ${nameEn}.`;
+    const footerLinks = document.getElementById('footer-links');
+    if (sl.github) {
+      const a = document.createElement('a');
+      a.href = sl.github; a.target = '_blank'; a.innerHTML = '<i class="fab fa-github"></i>';
+      footerLinks.appendChild(a);
+    }
+    if (sl.scholar) {
+      const a = document.createElement('a');
+      a.href = sl.scholar; a.target = '_blank'; a.innerHTML = '<i class="ai ai-google-scholar"></i>';
+      footerLinks.appendChild(a);
+    }
+
+  })();
+  </script>
+</body>
+</html>
