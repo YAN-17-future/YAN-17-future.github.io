@@ -41,5 +41,22 @@
     "member": []
   },
   "fundings": [],
-  "projects": []
+  "projects": [
+    {
+      "name": "Fully Autonomous Logistics Handling Cart",
+      "brief": "STM32 + Raspberry Pi dual-controller, mecanum wheels, 6-DOF robotic arm, visual recognition",
+      "desc": "A fully autonomous logistics handling cart based on the STM32 + Raspberry Pi dual-controller architecture. Features mecanum wheel omnidirectional movement, a 6-DOF robotic arm, and visual recognition for grasping and placement tasks.",
+      "tags": ["STM32", "Raspberry Pi", "Robotics", "Computer Vision", "C"],
+      "github": "https://github.com/YAN-17-future/Design-and-Implementation-of-a-Fully-Autonomous-Logistics-Handling-Cart",
+      "link": ""
+    },
+    {
+      "name": "2D Solar Tracking System",
+      "brief": "STM32F103C8T6 dual-axis solar tracking with auto/manual modes and TFT display",
+      "desc": "A dual-axis solar tracking system based on STM32F103C8T6. Supports real-time tracking of sunlight intensity in four directions (up/down/left/right) using photoresistors, with automatic and manual control modes, TFT display for sensor data and battery level.",
+      "tags": ["STM32", "Embedded", "Solar Energy", "C"],
+      "github": "https://github.com/YAN-17-future/2D-solar-tracking-system",
+      "link": ""
+    }
+  ]
 }
