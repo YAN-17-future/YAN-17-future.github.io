@@ -343,26 +343,21 @@
     }
 
     /* Publications */
-    .pub-list { display: flex; flex-direction: column; gap: 16px; }
+    .pub-list { display: flex; flex-direction: column; gap: 4px; }
 
     .pub-card {
       border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--card-bg);
-      transition: all var(--transition);
+      transition: background-color 0.2s;
       overflow: hidden;
     }
 
-    .pub-card:hover {
-      border-color: var(--muted);
-      box-shadow: var(--shadow-hover);
-    }
+    .pub-card:hover { background: var(--card-hover); }
 
     .pub-header {
       display: grid;
-      grid-template-columns: 220px 1fr auto;
-      gap: 24px;
-      padding: 20px 24px;
+      grid-template-columns: 320px 1fr auto;
+      gap: 40px;
+      padding: 24px;
       cursor: pointer;
       align-items: center;
     }
@@ -371,7 +366,7 @@
       width: 100%;
       aspect-ratio: 16/9;
       background: var(--pub-img-bg);
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
       flex-shrink: 0;
     }
@@ -380,7 +375,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.4s ease;
     }
+
+    .pub-card:hover .pub-thumb img { transform: scale(1.03); }
 
     .pub-thumb-placeholder {
       width: 100%;
@@ -395,21 +393,18 @@
     .pub-brief { display: flex; flex-direction: column; min-width: 0; }
 
     .pub-title {
-      font-size: 17px;
-      font-weight: 600;
+      font-size: 20px;
+      font-weight: 500;
       line-height: 1.35;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
       letter-spacing: -0.01em;
     }
 
     .pub-authors {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--muted);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       line-height: 1.5;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .pub-authors strong { color: var(--text); font-weight: 600; }
@@ -469,23 +464,22 @@
     .pub-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 10px 20px;
     }
 
     .pub-links a {
-      font-size: 13px;
-      padding: 4px 12px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
+      font-size: 14px;
       color: var(--text);
-      transition: all var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      transition: opacity var(--transition);
     }
 
-    .pub-links a:hover {
-      background: var(--badge-bg);
-      color: var(--badge-text);
-      border-color: var(--badge-bg);
-    }
+    .pub-links a::after { content: "\2197"; font-size: 12px; }
+
+    .pub-links a:hover { opacity: 0.6; }
 
     /* Education */
     .edu-list { display: flex; flex-direction: column; gap: 24px; }
@@ -604,20 +598,15 @@
     }
 
     /* Projects */
-    .project-list { display: flex; flex-direction: column; gap: 16px; }
+    .project-list { display: flex; flex-direction: column; gap: 4px; }
 
     .project-card {
-      border: 1px solid var(--border);
       border-radius: 12px;
-      background: var(--card-bg);
-      transition: all var(--transition);
+      transition: background-color 0.2s;
       overflow: hidden;
     }
 
-    .project-card:hover {
-      border-color: var(--muted);
-      box-shadow: var(--shadow-hover);
-    }
+    .project-card:hover { background: var(--card-hover); }
 
     .project-header {
       display: flex;
@@ -709,23 +698,22 @@
     .project-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 10px 20px;
     }
 
     .project-links a {
-      font-size: 13px;
-      padding: 4px 12px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
+      font-size: 14px;
       color: var(--text);
-      transition: all var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      transition: opacity var(--transition);
     }
 
-    .project-links a:hover {
-      background: var(--badge-bg);
-      color: var(--badge-text);
-      border-color: var(--badge-bg);
-    }
+    .project-links a::after { content: "\2197"; font-size: 12px; }
+
+    .project-links a:hover { opacity: 0.6; }
 
     /* Scholar Badge */
     .scholar-badge img {
@@ -774,9 +762,7 @@
 
       .about-grid { grid-template-columns: 1fr; }
 
-      .pub-header { grid-template-columns: 160px 1fr auto; gap: 16px; }
-
-      .pub-thumb { max-width: 200px; }
+      .pub-header { grid-template-columns: 240px 1fr auto; gap: 24px; }
 
       h1 { font-size: 40px; }
     }
