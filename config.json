@@ -35,7 +35,51 @@
       "detail": "Hubei Innox Academy (Three Gorges)"
     }
   ],
-  "honors": [],
+  "honors": [
+    {
+      "date": "Aug. 2026",
+      "level": "National First Prize",
+      "title": "International Advanced Robotics Simulation Technology Competition"
+    },
+    {
+      "date": "Jul. 2026",
+      "level": "First Prize",
+      "title": "Application Scenario Analysis Track, Hubei Division, RoboCom Robot Developer Contest",
+      "meta": "Provincial Rank 2; National Second Prize"
+    },
+    {
+      "date": "Jun. 2026",
+      "level": "First Prize",
+      "title": "IoT Application Track, Central South Division, China College Student Computer Design Contest"
+    },
+    {
+      "date": "Nov. 2025",
+      "level": "National First Prize",
+      "title": "Intelligent Equipment Design Track, China Mechanical Engineering Innovation and Creativity Competition"
+    },
+    {
+      "date": "Nov. 2025",
+      "level": "Multiple Awards",
+      "title": "Provincial Innovation and Entrepreneurship Competitions on Reservoir Sediment Monitoring"
+    },
+    {
+      "date": "Oct. 2025",
+      "level": "Second Prize",
+      "title": "19th \"Challenge Cup\" Challenge Bid Task Arena Competition",
+      "meta": "Biomedical Field HT-02; sponsored by Air Force Medical Center"
+    },
+    {
+      "date": "Oct. 2025",
+      "level": "Second Prize",
+      "title": "19th \"Challenge Cup\" Challenge Bid Task Arena Competition",
+      "meta": "Robotics Field DG-02; sponsored by a robotics company in Dongguan"
+    },
+    {
+      "date": "Jul. 2025",
+      "level": "National First Prize",
+      "title": "Robot Innovation Track, 27th China Robot and Artificial Intelligence Competition"
+    }
+  ],
   "services": {
     "reviewer": [],
     "member": []

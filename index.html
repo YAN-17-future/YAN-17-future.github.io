@@ -569,32 +569,87 @@
     }
 
     /* Honors */
-    .honor-list { display: flex; flex-direction: column; gap: 12px; }
+    .honor-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
 
     .honor-item {
-      font-size: 16px;
-      padding: 14px 20px;
-      border: 1px solid transparent;
+      position: relative;
+      min-height: 150px;
+      padding: 18px 20px 18px 22px;
+      border: 1px solid var(--border);
       border-radius: 8px;
+      background: var(--card-bg);
       transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
       display: flex;
-      align-items: center;
-      gap: 12px;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      overflow: hidden;
     }
 
     .honor-item:hover {
       background: var(--card-hover);
-      border-color: var(--border);
-      box-shadow: var(--shadow);
+      border-color: rgba(20, 111, 202, 0.34);
+      box-shadow: var(--shadow-hover);
     }
 
     .honor-item::before {
       content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
+      position: absolute;
+      left: 0;
+      top: 18px;
+      bottom: 18px;
+      width: 3px;
+      border-radius: 0 999px 999px 0;
+      background: linear-gradient(180deg, var(--accent) 0%, rgba(20, 111, 202, 0.18) 100%);
+    }
+
+    .honor-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .honor-level {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .honor-date {
+      color: var(--muted);
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      padding-top: 3px;
+    }
+
+    .honor-title {
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    .honor-meta {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
     }
 
     /* Services */
@@ -873,6 +928,8 @@
       .news-item { flex-direction: column; gap: 4px; }
 
       .edu-item { flex-direction: column; gap: 4px; }
+
+      .honor-list { grid-template-columns: 1fr; }
 
       .footer-content { flex-direction: column; gap: 12px; text-align: center; }
 
@@ -1279,7 +1336,17 @@
       config.honors.forEach(h => {
         const item = document.createElement('div');
         item.className = 'honor-item';
-        item.textContent = h;
+        if (typeof h === 'string') {
+          item.innerHTML = `<div class="honor-title">${h}</div>`;
+        } else {
+          item.innerHTML = `
+            <div class="honor-top">
+              ${h.level ? `<span class="honor-level">${h.level}</span>` : ''}
+              ${h.date ? `<span class="honor-date">${h.date}</span>` : ''}
+            </div>
+            <div class="honor-title">${h.title || ''}</div>
+            ${h.meta ? `<div class="honor-meta">${h.meta}</div>` : ''}`;
+        }
         honorList.appendChild(item);
       });
     } else {

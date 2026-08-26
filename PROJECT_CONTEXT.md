@@ -68,7 +68,7 @@ flowchart LR
 | `publications[]` | 论文标题、作者、会议信息、图片、描述及外链 |
 | `projects[]` | 项目名、简介附图、摘要、描述、标签、GitHub 与演示链接 |
 | `education[]` | 时间、学位、学校和补充信息 |
-| `honors[]` | 荣誉文本列表 |
+| `honors[]` | 荣誉奖项卡片；支持 `date`、`level`、`title`、`meta`，也兼容旧字符串 |
 | `services.reviewer`, `services.member` | 审稿与会员经历 |
 | `fundings[]` | 项目来源、周期和编号 |
 
@@ -82,6 +82,7 @@ flowchart LR
 - Sticky Header 在页面滚动后改变样式。
 - About、列表区域使用 `IntersectionObserver` 实现一次性显现动画。
 - Publications 和 Projects 使用可展开卡片。
+- Honors & Awards 使用结构化双列奖项卡片，窄屏自动变为单列。
 - 社交链接仅在对应配置值非空时创建。
 - 图片加载失败时显示占位内容。
 
@@ -145,7 +146,7 @@ git status --short --branch
 
 - `config.avatar` 已引用 `images/profile.jpg`；`about-image` 仍没有渲染逻辑，原有 8 张网图占位素材均未被页面引用。
 - Scholar 地址为空，但 “View all on Google Scholar” 仍会显示为无效的 `#` 链接。
-- Publications、Honors、Services 和 Fundings 当前为空，但对应区块仍显示空状态；页面会显得比实际内容更长。
+- Publications、Services 和 Fundings 当前为空，但对应区块仍显示空状态；页面会显得比实际内容更长。
 - 桌面导航没有 Services 和 Fundings，移动导航却包含它们，两端导航不一致。
 - 多个配置字段通过 `innerHTML` 写入页面。当前配置是仓库内受信任数据；若未来改为外部数据源，必须先做 HTML 转义或清洗。
 - 所有 CSS 和 JavaScript 都在单个 `index.html` 中。当前规模尚可维护，但继续加入复杂功能会增加回归风险。
