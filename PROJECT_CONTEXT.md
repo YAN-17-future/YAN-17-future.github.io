@@ -68,7 +68,7 @@ flowchart LR
 | `publications[]` | 论文标题、作者、会议信息、图片、描述及外链 |
 | `projects[]` | 项目名、简介附图、摘要、描述、标签、GitHub 与演示链接 |
 | `education[]` | 时间、学位、学校和补充信息 |
-| `honors[]` | 荣誉奖项卡片；支持 `date`、`level`、`title`、`meta`，也兼容旧字符串 |
+| `honors[]` | 荣誉奖项原文字符串列表；渲染时只高亮开头奖项等级，保持原文顺序和文字不变 |
 | `services.reviewer`, `services.member` | 审稿与会员经历 |
 | `fundings[]` | 项目来源、周期和编号 |
 
@@ -82,7 +82,7 @@ flowchart LR
 - Sticky Header 在页面滚动后改变样式。
 - About、列表区域使用 `IntersectionObserver` 实现一次性显现动画。
 - Publications 和 Projects 使用可展开卡片。
-- Honors & Awards 使用结构化双列奖项卡片，窄屏自动变为单列。
+- Honors & Awards 使用紧凑横栏列表，行内突出奖项等级，不拆改奖项原文。
 - 社交链接仅在对应配置值非空时创建。
 - 图片加载失败时显示占位内容。
 
