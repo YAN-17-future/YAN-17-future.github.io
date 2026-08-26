@@ -616,6 +616,23 @@
       cursor: pointer;
     }
 
+    .project-thumb {
+      width: 180px;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--bg-secondary);
+      flex-shrink: 0;
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
     .project-header-left { flex: 1; min-width: 0; }
 
     .project-name {
@@ -628,9 +645,10 @@
       font-size: 14px;
       color: var(--muted);
       line-height: 1.5;
-      white-space: nowrap;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
       overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .project-tags {
@@ -790,6 +808,8 @@
       .pub-thumb { max-width: 100%; }
 
       .project-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+      .project-thumb { width: 100%; }
 
       .project-tags { align-self: flex-start; }
     }
@@ -1228,12 +1248,14 @@
         const card = document.createElement('div');
         card.className = 'project-card';
         const tagsHtml = (p.tags || []).map(t => `<span class="project-tag">${t}</span>`).join('');
+        const imageHtml = p.image ? `<div class="project-thumb"><img src="${p.image}" alt="${p.name} project image" loading="lazy"></div>` : '';
         let linksHtml = '';
         if (p.github) linksHtml += `<a href="${p.github}" target="_blank"><i class="fab fa-github"></i> GitHub</a>`;
         if (p.link) linksHtml += `<a href="${p.link}" target="_blank"><i class="fas fa-external-link-alt"></i> Link</a>`;
 
         card.innerHTML = `
           <div class="project-header">
+            ${imageHtml}
             <div class="project-header-left">
               <div class="project-name">${p.name}</div>
               ${p.brief ? `<div class="project-brief">${p.brief}</div>` : ''}

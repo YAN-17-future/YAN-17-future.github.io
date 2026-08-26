@@ -28,6 +28,8 @@
 | `index.html` | 页面结构、完整 CSS、所有渲染逻辑和交互 | 修改布局、视觉或行为时 |
 | `config.json` | 姓名、简介、链接、动态列表等站点内容 | 日常更新个人资料和成果时 |
 | `images/profile.jpg` | 首页 4:3 真实个人环境照 | 更换首页个人形象时 |
+| `images/project-logistics-cart.png` | Fully Autonomous Logistics Handling Cart 项目简介附图 | 更换物流小车项目展示图时 |
+| `images/project-solar-tracker.png` | 2D Solar Tracking System 项目简介附图 | 更换太阳能追踪项目展示图时 |
 | `images/about1.jpg` 至 `about5.jpg` | 5 张 800×600 网图占位素材 | 不用作个人照；可在确认无用后清理 |
 | `images/avatar1.jpg` 至 `avatar3.jpg` | 3 张 800×800 网图占位素材 | 不用作个人头像；可在确认无用后清理 |
 
@@ -63,7 +65,7 @@ flowchart LR
 | `social_links` | Scholar、GitHub、ORCID、DBLP、Twitter |
 | `news[]` | 日期与新闻内容 |
 | `publications[]` | 论文标题、作者、会议信息、图片、描述及外链 |
-| `projects[]` | 项目名、摘要、描述、标签、GitHub 与演示链接 |
+| `projects[]` | 项目名、简介附图、摘要、描述、标签、GitHub 与演示链接 |
 | `education[]` | 时间、学位、学校和补充信息 |
 | `honors[]` | 荣誉文本列表 |
 | `services.reviewer`, `services.member` | 审稿与会员经历 |

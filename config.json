@@ -44,6 +44,7 @@
   "projects": [
     {
       "name": "Fully Autonomous Logistics Handling Cart",
+      "image": "images/project-logistics-cart.png",
       "brief": "STM32 + Raspberry Pi dual-controller, mecanum wheels, 6-DOF robotic arm, visual recognition",
       "desc": "A fully autonomous logistics handling cart based on the STM32 + Raspberry Pi dual-controller architecture. Features mecanum wheel omnidirectional movement, a 6-DOF robotic arm, and visual recognition for grasping and placement tasks.",
       "tags": ["STM32", "Raspberry Pi", "Robotics", "Computer Vision", "C"],
@@ -52,6 +53,7 @@
     },
     {
       "name": "2D Solar Tracking System",
+      "image": "images/project-solar-tracker.png",
       "brief": "STM32F103C8T6 dual-axis solar tracking with auto/manual modes and TFT display",
       "desc": "A dual-axis solar tracking system based on STM32F103C8T6. Supports real-time tracking of sunlight intensity in four directions (up/down/left/right) using photoresistors, with automatic and manual control modes, TFT display for sensor data and battery level.",
       "tags": ["STM32", "Embedded", "Solar Energy", "C"],
