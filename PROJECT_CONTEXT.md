@@ -16,6 +16,7 @@
 | 发布方式 | GitHub Pages，仓库名即用户主页域名 |
 | 技术形态 | 原生 HTML、内联 CSS、原生 JavaScript、JSON |
 | 内容主题 | 本科生学术主页，图像处理与计算机视觉 |
+| 视觉方向 | 冷调蓝白、轻玻璃感、柔和渐变，保持学术主页的清爽和可信度 |
 | 当前项目 | 全自主物流搬运小车、二维太阳能追踪系统 |
 | 最近一次功能提交 | `dd4a7a1`：调整 Publications 与 Projects 样式 |
 
@@ -95,6 +96,41 @@ python -m http.server 8000
 ```
 
 然后访问 <http://localhost:8000/>。发布没有构建产物：验证完成后提交并推送 `main`，GitHub Pages 会直接托管仓库中的静态文件。
+
+### GitHub 推送备忘
+
+常规推送先用：
+
+```powershell
+git push origin main
+```
+
+这台机器上 HTTPS 到 GitHub 偶尔会出现 `Recv failure: Connection was reset`、`Could not connect to server` 或 DNS 短暂失败。遇到这种情况，不要 force push，也不要重新提交；先确认本地只领先远端预期提交：
+
+```powershell
+git status --short --branch
+git log --oneline -3
+```
+
+已验证可用的备用推送通道是 GitHub SSH 443，并显式指定 Windows OpenSSH：
+
+```powershell
+git -c core.sshCommand="C:/Windows/System32/OpenSSH/ssh.exe -p 443" push --progress ssh://git@ssh.github.com:443/YAN-17-future/YAN-17-future.github.io.git main
+```
+
+推送后用同一 SSH 通道核对远端 `main`：
+
+```powershell
+git rev-parse HEAD
+git -c core.sshCommand="C:/Windows/System32/OpenSSH/ssh.exe -p 443" ls-remote ssh://git@ssh.github.com:443/YAN-17-future/YAN-17-future.github.io.git refs/heads/main
+```
+
+如果两个 SHA 一致，但 `git status` 因为临时 SSH URL 推送仍显示 `ahead 1`，只同步本地追踪引用：
+
+```powershell
+git update-ref refs/remotes/origin/main <远端 main 的 SHA>
+git status --short --branch
+```
 
 ## 修改后的最小验证
 
